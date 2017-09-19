@@ -67,6 +67,7 @@ def insert (db, tableName, data) :
 
     try:
         cursor.execute(insertSQL, data)
+        db.commit()
     except mysql.connector.Error as err:
         if (err.errno == errorcode.ER_DUP_ENTRY) :
             logging.debug('[Conflict]:[Table: {}]:[Data: {}]'.format(tableName, data))
